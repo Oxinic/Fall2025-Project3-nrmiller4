@@ -1,0 +1,39 @@
+@model IEnumerable<Fall2025_Project3_nrmiller4.Models.MovieActor>
+
+@{
+    ViewData["Title"] = "Movie-Actor Relationships";
+}
+
+<h1>Movie-Actor Relationships</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Relationship</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Actor</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-controller="Movies" asp-action="Details" asp-route-id="@item.MovieId">
+                    @item.Movie.Title (@item.Movie.YearOfRelease)
+                </a>
+            </td>
+            <td>
+                <a asp-controller="Actors" asp-action="Details" asp-route-id="@item.ActorId">
+                    @item.Actor.Name
+                </a>
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Remove</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

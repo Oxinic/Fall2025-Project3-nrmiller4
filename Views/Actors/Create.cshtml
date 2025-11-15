@@ -1,0 +1,60 @@
+@model Fall2025_Project3_nrmiller4.Models.Actor
+
+@{
+    ViewData["Title"] = "Create Actor";
+}
+
+<h1>Create New Actor</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" class="form-control">
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Non-binary">Non-binary</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="Age" class="control-label"></label>
+                <input asp-for="Age" class="form-control" type="number" />
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="ImdbLink" class="control-label"></label>
+                <input asp-for="ImdbLink" class="form-control" placeholder="https://www.imdb.com/name/..." />
+                <span asp-validation-for="ImdbLink" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label for="photoFile" class="control-label">Photo</label>
+                <input type="file" name="photoFile" id="photoFile" class="form-control" accept="image/*" />
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,41 @@
+@model Fall2025_Project3_nrmiller4.Models.MovieActor
+
+@{
+    ViewData["Title"] = "Add Movie-Actor Relationship";
+}
+
+<h1>Add Movie-Actor Relationship</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="MovieId" class="control-label">Movie</label>
+                <select asp-for="MovieId" class="form-control" asp-items="ViewBag.MovieId">
+                    <option value="">-- Select Movie --</option>
+                </select>
+                <span asp-validation-for="MovieId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group mb-3">
+                <label asp-for="ActorId" class="control-label">Actor</label>
+                <select asp-for="ActorId" class="form-control" asp-items="ViewBag.ActorId">
+                    <option value="">-- Select Actor --</option>
+                </select>
+                <span asp-validation-for="ActorId" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
