@@ -38,6 +38,10 @@ namespace Fall2025_Project3_nrmiller4.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("MovieId,ActorId")] MovieActor movieActor)
         {
+            // Remove validation errors for navigation properties
+            ModelState.Remove("Movie");
+            ModelState.Remove("Actor");
+
             // Check for duplicate relationship
             var exists = await _context.MovieActors
                 .AnyAsync(ma => ma.MovieId == movieActor.MovieId && ma.ActorId == movieActor.ActorId);
